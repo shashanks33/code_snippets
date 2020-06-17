@@ -1,7 +1,16 @@
 import tensorflow as tf
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
-train_datagen = ImageDataGenerator(rescale = 1./255)
+train_datagen = ImageDataGenerator(
+    rotation_range = 40, # rotation upto 40 degrees out of 180
+    rescale = 1./255,
+    width_shift_range = 0.2, #alters the width
+    height_shift_range = 0.2, # alters the height
+    shear_range = 0.2, # shears the image with a range on 0-20 percent
+    zoom_range = 0.2, # Zoom's into the image with a range on 0-20 percent
+    horizontal_flip = True, #Flips the image horizontally
+    fill_mode = 'nearest' #Fills pixels that might be lost in this process
+    )
 valid_datagen = ImageDataGenerator(rescale=1./255)
 
 train_dir = ''
