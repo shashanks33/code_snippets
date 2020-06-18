@@ -25,3 +25,16 @@ with open('csv_path') as csvfile:
 
 print(len(sentences))
 print(sentences[0])
+
+sentence_tokenizer = Tokenizer(num_words = 100, oov_token = '<oov>')
+sentence_tokenizer.fit_on_texts(sentences)
+word_index = sentence_tokenizer.word_index
+print(len(word_index))
+
+sentence_sequences = sentence_tokenizer.texts_to_sequences(sentences)
+paddings = pad_sequences(sequences, padding='post')
+
+label_tokenizer = Tokenizer()
+label_tokenizer.fit_on_texts(labels)
+label_word_index = label_tokenizer.word_index
+label_sequences = label_tokenizer.texts_to_sequences(labels)
